@@ -1,5 +1,22 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
-  }
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "sf-iron-trainer-app",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSExceptionDomains": {
+            "localhost": {
+              "NSTemporaryExceptionAllowsInsecureHTTPLoads": true
+            },
+            "192.168.1.115": {
+              "NSTemporaryExceptionAllowsInsecureHTTPLoads": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "trainer",
+  "displayName": "Trainer"
 }
