@@ -57,11 +57,11 @@ export default class SignUp extends React.Component {
 					<Form style={styles.inputForm}>
 						<Text style={styles.formText}> EMAIL ADDRESS </Text>
 					  <Item style={styles.inputField}>
-					    <Input placeholder="" value={this.state.email} onChange={(email) => this.setState({email})}/>
+					    <Input style={styles.formText} placeholder="" value={this.state.email} onChange={(email) => this.setState({email})}/>
 					  </Item>
 					  <Text style={styles.formText}> PASSWORD </Text>
 					  <Item last>
-					    <Input placeholder=""  onChange={(password) => this.setState({password})}/>
+					    <Input style={styles.formText} placeholder=""  onChange={(password) => this.setState({password})}/>
 					  </Item>
 					</Form>
 					<Grid>
