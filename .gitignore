@@ -2,7 +2,7 @@
 
 # expo
 .expo/
-ios/build
+/ios/build
 
 # dependencies
 /node_modules
