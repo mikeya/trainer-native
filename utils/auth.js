@@ -1,5 +1,5 @@
 export const signUp = (email, password) => {
-    return fetch('http://192.168.86.49:5000/sign-up', {
+    return fetch('http://localhost:5000/sign-up', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
