@@ -1,54 +1,15 @@
 import React, { Component } from 'react';
-
 import {
-  NavigatorIOS,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+  createStackNavigator,
+} from 'react-navigation';
+import Login from './src/screens/Login';
+import Signup from './src/screens/Signup';
+import Dashboard from './src/screens/Dashboard';
 
-import {
-  Button,
-  Container,
-  Content,
-  Footer,
-  Header,
-  Left,
-  TouchableHighlight
-} from 'native-base';
+const App = createStackNavigator({
+  Login: { screen: Login },
+  Signup: { screen: Signup },
+  Dashboard: { screen: Dashboard }
+});
 
-import Login from './src/screens/Login.js'
-export default class App extends React.Component {
-
-  constructor(props){
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    }
-  }
-
-  signUp() {
-    signUp(this.state.email, this.state.password);
-  }
-
-  render() {
-    return (
-      <NavigatorIOS
-        initialRoute={{
-          title: 'Login',
-          component: Login
-        }}
-        style={{flex: 1}} />
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-  });
+export default App;
