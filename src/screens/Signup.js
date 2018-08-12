@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import {
+	StyleSheet,
 	View,
 } from 'react-native';
 
@@ -24,7 +25,7 @@ import {
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { signUp } from '../../utils/auth';
 
-class SignUp extends React.Component {
+export default class SignUp extends React.Component {
 	_onLogin = () => {
 	  this.props.navigation.navigate('Dashboard')
 	}
@@ -50,20 +51,22 @@ class SignUp extends React.Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
-			<Container>
-				<Header />
+			<Container style={styles.wrapper}>
 				<Content padder>
-					<Form>
-					  <Item>
-					    <Input placeholder="email" value={this.state.email} onChange={(email) => this.setState({email})}/>
+					<Text style={styles.loginText}>Sign Up</Text>
+					<Form style={styles.inputForm}>
+						<Text style={styles.formText}> EMAIL ADDRESS </Text>
+					  <Item style={styles.inputField}>
+					    <Input placeholder="" value={this.state.email} onChange={(email) => this.setState({email})}/>
 					  </Item>
+					  <Text style={styles.formText}> PASSWORD </Text>
 					  <Item last>
-					    <Input placeholder="password"  onChange={(password) => this.setState({password})}/>
+					    <Input placeholder=""  onChange={(password) => this.setState({password})}/>
 					  </Item>
 					</Form>
 					<Grid>
-						<Col style={{ backgroundColor: '#635DB7' }}>
-							<Button full onPress={this.signUp}>
+						<Col>
+							<Button full light style={styles.loginButton} onPress={this.signUp}>
 								<Text>Create Account</Text>
 							</Button>
 						</Col>
@@ -75,4 +78,32 @@ class SignUp extends React.Component {
 	}
 };
 
-export default SignUp
+const styles = StyleSheet.create({
+  wrapper: {
+  	flex: 1,
+  	display: 'flex',
+  	backgroundColor: '#808080'
+  },
+  loginText: {
+    fontSize: 40,
+    color: '#fff',
+    marginTop: 20,
+    marginBottom: 70
+  },
+  formText: {
+    color: '#fff'
+  },
+  noAccountText: {
+    color: '#fff'
+  },
+  loginButton: {
+    marginBottom: 20,
+    marginTop: 20
+  },
+  inputForm: {
+  	marginBottom: 10
+  },
+  inputField: {
+  	marginBottom: 10
+  }
+})
