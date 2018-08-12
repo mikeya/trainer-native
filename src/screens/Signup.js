@@ -27,11 +27,23 @@ import Dashboard from './Dashboard.js'
 
 class Signup extends React.Component {
 	_onLogin = () => {
-	  // this.props.navigator.push({
-	  //   title: 'Dashboard',
-	  //   component: Dashboard
-		// });
+	  this.props.navigator.push({
+	    title: 'Dashboard',
+	    component: Dashboard
+		});
 	}
+
+	// constructor(props){
+	//   super(props);
+	//   this.state = {
+	//     email: '',
+	//     password: ''
+	//   }
+	// }
+
+	// signUp() {
+	//   signUp(this.state.email, this.state.password);
+	// }
 
 	render() {
 		return (
@@ -60,4 +72,4 @@ class Signup extends React.Component {
 	}
 };
 
-export default Signup
+// export default Signup
