@@ -23,22 +23,15 @@ import {
 } from 'native-base';
 
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import Dashboard from './Dashboard.js'
-import Signup from './Signup.js'
-
 class Login extends React.Component {
-	_onLogin = () => {
-	  this.props.navigator.push({
-	    title: 'Dashboard',
-	    component: Dashboard
-	  });
+	onLogin = () => {
+		const { navigate } = this.props.navigation;
+		navigation('Dashboard')
 	}
 
-	_noAccount = () => {
-		this.props.navigator.push({
-			title: 'Sign up',
-			component: Signup
-		})
+	signUp = () => {
+		const { navigate } = this.props.navigation;
+		navigate('SignUp')
 	}
 
 	render() {
@@ -57,13 +50,13 @@ class Login extends React.Component {
 					<Grid>
 						<Row>
 							<Col style={{ backgroundColor: '#635DB7' }}>
-								<Button full onPress={this._onLogin}>
+								<Button full onPress={this.onLogin}>
 									<Text>Login</Text>
 								</Button>
 							</Col>
 						</Row>
 						<Row margin={10}>
-						<TouchableHighlight onPress={this._noAccount}>
+						<TouchableHighlight onPress={this.signUp}>
 							<Text>Don't have an account? Click here</Text>
 						</TouchableHighlight>
 						</Row>

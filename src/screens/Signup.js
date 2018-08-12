@@ -13,7 +13,7 @@ import {
   Form,
   Header,
   Icon,
-  Input,
+	Input,
   Item,
   Left,
   Right,
@@ -22,33 +22,48 @@ import {
 } from 'native-base';
 
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import Dashboard from './Dashboard.js'
-// import createUser from '../Auth.js'
+import { signUp } from '../../utils/auth';
 
-class Signup extends React.Component {
+class SignUp extends React.Component {
 	_onLogin = () => {
-	  // this.props.navigator.push({
-	  //   title: 'Dashboard',
-	  //   component: Dashboard
-		// });
+	  this.props.navigation.navigate('Dashboard')
+	}
+
+	constructor(props){
+	  super(props);
+	  this.state = {
+	    email: '',
+	    password: ''
+		}
+		this.signUp = this.signUp.bind(this);
+	}
+
+	signUp() {
+		signUp(this.state.email, this.state.password)
+		.then((response) => {
+				const { navigate } = this.props.navigation;
+				navigate('Dashbord');
+				// return response.activation_url;
+		}).catch((error) => console.warn(error))
 	}
 
 	render() {
+		const { navigate } = this.props.navigation;
 		return (
 			<Container>
 				<Header />
 				<Content padder>
 					<Form>
 					  <Item>
-					    <Input placeholder="Username" />
+					    <Input placeholder="email" value={this.state.email} onChange={(email) => this.setState({email})}/>
 					  </Item>
 					  <Item last>
-					    <Input placeholder="Password" />
+					    <Input placeholder="password"  onChange={(password) => this.setState({password})}/>
 					  </Item>
 					</Form>
 					<Grid>
 						<Col style={{ backgroundColor: '#635DB7' }}>
-							<Button full onPress={this._onLogin}>
+							<Button full onPress={this.signUp}>
 								<Text>Create Account</Text>
 							</Button>
 						</Col>
@@ -60,4 +75,4 @@ class Signup extends React.Component {
 	}
 };
 
-export default Signup
+export default SignUp
