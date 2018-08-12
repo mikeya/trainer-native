@@ -17,7 +17,7 @@ import {
   TouchableHighlight
 } from 'native-base';
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
   render() {
     return (
       <Container>
@@ -29,5 +29,3 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-export default Dashboard

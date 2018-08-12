@@ -8,10 +8,15 @@ import SignUp from './src/screens/SignUp';
 import Dashboard from './src/screens/Dashboard';
 
 const App = createStackNavigator({
-  Home: { screen: LoggedOut },
+  Home: {
+    screen: LoggedOut,
+    navigationOptions: () => ({
+      header: null
+    })
+   },
   Login: { screen: Login },
   SignUp: { screen: SignUp },
-  Dashboard: { screen: Dashboard }
+  Dashboard: { screen: Dashboard },
 });
 
 export default App;

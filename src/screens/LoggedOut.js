@@ -18,7 +18,7 @@ export default class LoggedOut extends Component {
 		  	  source={require('../img/Trainer.png')}
 		  	/>
 		  	<Text style={styles.welcomeText}>Welcome to Trainer!</Text>
-		  	<Button rounded light style={styles.logInButton} onPress={() => navigate('Login')}>
+		  	<Button rounded light style={styles.loginButton} onPress={() => navigate('Login')}>
 		  	  <Text>Log In</Text>
 		  	</Button>
 		  	<Button rounded bordered style={styles.createAccountButton} onPress={() => navigate('SignUp')}>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 	  marginLeft: 30,
 	  marginBottom: 50
 	},
-	logInButton: {
+	loginButton: {
 	  width: 300,
 	  marginLeft: 30,
 	  marginBottom: 20
