@@ -73,7 +73,7 @@ export default class SignUp extends React.Component {
 					</Grid>
 				</Content>
 				<Footer />
-			</Container>
+			</Container >
 		);
 	}
 };
