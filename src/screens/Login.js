@@ -32,6 +32,7 @@ export default class Login extends Component {
 		return (
 			<Container style={styles.wrapper}>
 				<Content padder>
+          <Text>This is new</Text>
           <Text style={styles.loginText}>Log in</Text>
 					<Form style={styles.inputForm}>
             <Text style={styles.formText}> EMAIL ADDRESS </Text>
