@@ -1,5 +1,5 @@
 export const signUp = (email, password) => {
-    return fetch('http://localhost:5000/sign-up', {
+    return fetch('https://www.surewhynotokay.com/sign-up', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -14,14 +14,12 @@ export const signUp = (email, password) => {
 };
 
 export const activate = (activationKey) => {
-    return fetch(`http://localhost:5000/activate/${activationKey}`)
+    return fetch(`https://www.surewhynotokay.com/activate/${activationKey}`)
         .then((response) => response.json())
-        .then((responseJson) => true)
-        .catch((error) => false);
 };
 
 export const login = (email, password) => {
-    return fetch('http://localhost:5000/token', {
+    return fetch('https://www.surewhynotokay.com/token', {
         method: 'POST',
         headers: {'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent( email + ":" + password)))}
     })

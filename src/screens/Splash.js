@@ -2,29 +2,30 @@ import React, { Component } from 'react';
 import {
 	Image,
 	StyleSheet,
-	View
+	View,
 } from 'react-native';
 import {
 	Button,
 	Text
 } from 'native-base';
 
-export default class LoggedOut extends Component {
+export default class Splash extends Component {
+    static navigationOptions = {
+        header: null,
+    };
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
-		  <View style={styles.wrapper}>
-		  	<Image style={styles.logo}
-		  	  source={require('../img/Trainer.png')}
-		  	/>
-		  	<Text style={styles.welcomeText}>Welcome to Trainer!</Text>
-		  	<Button rounded light style={styles.loginButton} onPress={() => navigate('Login')}>
-		  	  <Text>Log In</Text>
-		  	</Button>
-		  	<Button rounded bordered style={styles.createAccountButton} onPress={() => navigate('SignUp')}>
-		  	  <Text style={styles.createAccountText}>Create Account</Text>
-		  	</Button>
-		  </View>
+            <View style={styles.wrapper}>
+                <Image style={styles.logo} source={require('../img/Trainer.png')}/>
+                <Text style={styles.welcomeText}>Welcome to Trainer!</Text>
+                <Button rounded light style={styles.loginButton} onPress={() => navigate('Login')}>
+                    <Text>Log In</Text>
+                </Button>
+                <Button rounded bordered style={styles.createAccountButton} onPress={() => navigate('SignUp')}>
+                    <Text style={styles.createAccountText}>Create Account</Text>
+                </Button>
+            </View>
 		);
 	}
 }

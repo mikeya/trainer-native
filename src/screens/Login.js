@@ -19,47 +19,45 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class Login extends Component {
 	login = () => {
-		const { navigate } = this.props.navigation;
-		navigate('Dashboard')
-	}
+        this.props.navigation.navigate('Dashboard')
+	};
 
 	signUp = () => {
-		const { navigate } = this.props.navigation;
-		navigate('SignUp')
-	}
+        this.props.navigation.navigate('SignUp')
+	};
 
 	render() {
 		return (
-			<Container style={styles.wrapper}>
-				<Content padder>
-          <Text style={styles.loginText}>Log in</Text>
-					<Form style={styles.inputForm}>
-            <Text style={styles.formText}> EMAIL ADDRESS </Text>
-					  <Item style={styles.inputField}>
-					    <Input placeholder="" />
-					  </Item>
-            <Text style={styles.formText}> PASSWORD </Text>
-					  <Item last>
-					    <Input placeholder="" />
-					  </Item>
-					</Form>
-					<Grid>
-						<Row>
-							<Col>
-								<Button full light style={styles.loginButton} onPress={this.login}>
-									<Text>Submit</Text>
-								</Button>
-							</Col>
-						</Row>
-						<Row margin={10}>
-						<TouchableHighlight onPress={this.signUp}>
-							<Text style={styles.noAccountText}>Don't have an account? Click here</Text>
-						</TouchableHighlight>
-						</Row>
-					</Grid>
-				</Content>
-				<Footer />
-			</Container>
+            <Container style={styles.wrapper}>
+                <Content padder>
+                    <Text style={styles.loginText}>Log in</Text>
+                    <Form style={styles.inputForm}>
+                        <Text style={styles.formText}> EMAIL ADDRESS </Text>
+                        <Item style={styles.inputField}>
+                            <Input placeholder="" />
+                        </Item>
+                        <Text style={styles.formText}> PASSWORD </Text>
+                        <Item last>
+                            <Input placeholder="" />
+                        </Item>
+                    </Form>
+                    <Grid>
+                        <Row>
+                            <Col>
+                                <Button full light style={styles.loginButton} onPress={this.login}>
+                                    <Text>Submit</Text>
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row margin={10}>
+                            <TouchableHighlight onPress={this.signUp}>
+                                <Text style={styles.noAccountText}>Don't have an account? Click here</Text>
+                            </TouchableHighlight>
+                        </Row>
+                    </Grid>
+                </Content>
+                <Footer />
+            </Container>
 		);
 	}
 };

@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
-import {
-  createStackNavigator,
-} from 'react-navigation';
-import LoggedOut from './src/screens/LoggedOut';
-import Login from './src/screens/Login';
-import SignUp from './src/screens/SignUp';
-import Dashboard from './src/screens/Dashboard';
+import Router from './Router';
 
-const App = createStackNavigator({
-  Home: {
-    screen: LoggedOut,
-    navigationOptions: () => ({
-      header: null
-    })
-   },
-  Login: { screen: Login },
-  SignUp: { screen: SignUp },
-  Dashboard: { screen: Dashboard },
-});
+class App extends Component {
+  render() {
+    return (
+      <Router/>
+    )
+  }
+}
 
-export default App;
+export default (App);
