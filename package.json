@@ -15,14 +15,22 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "<rootDir>/node_modules/appcenter/test/AppCenterMock.js",
+      "<rootDir>/node_modules/appcenter-analytics/test/AppCenterAnalyticsMock.js",
+      "<rootDir>/node_modules/appcenter-crashes/test/AppCenterCrashesMock.js"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
+    "appcenter": "^1.7.1",
+    "appcenter-analytics": "^1.7.1",
+    "appcenter-crashes": "^1.7.1",
     "native-base": "^2.7.2",
     "npm": "^6.3.0",
     "react": "16.3.1",
-    "react-native": "~0.55.2",
+    "react-native": "^0.56.0",
     "react-native-easy-grid": "^0.2.0",
     "react-navigation": "^2.11.2"
   }
