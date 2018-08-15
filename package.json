@@ -18,8 +18,8 @@
   "jest": {
     "preset": "react-native",
     "transform": {
-     "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-   },
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
     "transformIgnorePatterns": [
       "/node_modules/(?!native-base)/"
     ],
@@ -34,6 +34,7 @@
     "appcenter": "^1.7.1",
     "appcenter-analytics": "^1.7.1",
     "appcenter-crashes": "^1.7.1",
+    "base-64": "^0.1.0",
     "native-base": "^2.7.2",
     "npm": "^6.3.0",
     "react": "16.4.1",
