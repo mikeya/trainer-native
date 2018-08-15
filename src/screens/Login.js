@@ -1,8 +1,10 @@
+import { login } from './../../utils/auth';
 import React, { Component } from 'react';
 import {
 	View,
 	StyleSheet,
-	TouchableHighlight
+    TouchableHighlight,
+    AsyncStorage
 } from 'react-native';
 import {
   Button,
@@ -18,8 +20,21 @@ import {
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class Login extends Component {
-	login = () => {
-        this.props.navigation.navigate('Dashboard')
+    constructor(props){
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+	login = async () => {
+        try {
+            const response = await login(this.state.email, this.state.password)
+            await AsyncStorage.setItem("userToken", response.token)
+        } catch(e ){
+            console.warn(e);
+        }
 	};
 
 	signUp = () => {
@@ -34,11 +49,11 @@ export default class Login extends Component {
                     <Form style={styles.inputForm}>
                         <Text style={styles.formText}> EMAIL ADDRESS </Text>
                         <Item style={styles.inputField}>
-                            <Input placeholder="" />
+                            <Input value={this.state.email}onChangeText={(email) => this.setState({email})}/>
                         </Item>
                         <Text style={styles.formText}> PASSWORD </Text>
                         <Item last>
-                            <Input placeholder="" />
+                            <Input value={this.state.password} onChangeText={(password) => this.setState({password})}/>
                         </Item>
                     </Form>
                     <Grid>
