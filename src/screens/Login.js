@@ -28,11 +28,21 @@ export default class Login extends Component {
         }
     }
 
+    static navigationOptions = () => ({
+        headerStyle: {
+          backgroundColor: '#808080',
+          borderBottomWidth: 0,
+        },
+        headerTintColor: '#fff'
+      });
+  
+
 	login = async () => {
         try {
-            const response = await login(this.state.email, this.state.password)
-            await AsyncStorage.setItem("userToken", response.token)
-        } catch(e ){
+            const response = await login(this.state.email, this.state.password);
+            await AsyncStorage.setItem("userToken", response.token);
+            this.props.navigation.navigate('AppStack');
+        } catch(e){
             console.warn(e);
         }
 	};
@@ -48,12 +58,21 @@ export default class Login extends Component {
                     <Text style={styles.loginText}>Log in</Text>
                     <Form style={styles.inputForm}>
                         <Text style={styles.formText}> EMAIL ADDRESS </Text>
-                        <Item style={styles.inputField}>
-                            <Input value={this.state.email}onChangeText={(email) => this.setState({email})}/>
+                        <Item style={styles.inputField} last>
+                            <Input 
+                                style={styles.formText}
+                                autoCapitalize={'none'}
+                                value={this.state.email}
+                                onChangeText={(email) => this.setState({email})}/>
                         </Item>
                         <Text style={styles.formText}> PASSWORD </Text>
                         <Item last>
-                            <Input value={this.state.password} onChangeText={(password) => this.setState({password})}/>
+                            <Input
+                                style={styles.formText}
+                                autoCapitalize={'none'}
+                                secureTextEntry={true}
+                                value={this.state.password} 
+                                onChangeText={(password) => this.setState({password})}/>
                         </Item>
                     </Form>
                     <Grid>

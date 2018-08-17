@@ -36,6 +36,14 @@ export default class SignUp extends React.Component {
         this.signUp = this.signUp.bind(this);
     }
 
+    static navigationOptions = () => ({
+      headerStyle: {
+        backgroundColor: '#808080',
+        borderBottomWidth: 0,
+      },
+      headerTintColor: '#fff'
+    });
+
     signUp() {
         signUp(this.state.email, this.state.password)
             .then(() => {
@@ -78,7 +86,6 @@ export default class SignUp extends React.Component {
 						</Col>
 					</Grid>
 				</Content>
-				<Footer />
 			</Container>
         );
     }
