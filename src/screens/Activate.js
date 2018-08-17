@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import {
-	StyleSheet,
-    Linking
+    Linking,
+    View
 } from 'react-native';
-import {
-    Container,
-    Content,
-    Text,
-  } from 'native-base';
-
+import { withNavigation } from 'react-navigation';
 import { activate } from "../../utils/auth";
+import { Toast } from 'native-base';
 
-export default class Activate extends Component {
+class Activate extends Component {
     constructor(props){
         super(props);
         this.handleOpenURL = this.handleOpenURL.bind(this);
     }
-
-    static navigationOptions = {
-        header: null,
-    };
 
     componentDidMount() {
         Linking.getInitialURL().then((url) => {
@@ -40,33 +32,26 @@ export default class Activate extends Component {
 
         activate(activationKey)
             .then((response) => {
-                console.log(response);
+                Toast.show({
+                    text: 'Your account is activated! You can login.',
+                    type: 'success',
+                    duration: 5000
+                })
                 navigate('Login');
             })
-            .catch((error) => console.warn);
+            .catch((error) => {
+                Toast.show({
+                    text: 'There was an error activating your account.',
+                    type: 'danger',
+                    duration: 5000
+                })
+                navigate('Login');
+            });
     }
 
     render(){
-        return (
-            <Container style={styles.wrapper}>
-                <Content padder>
-                    <Text style={styles.header}>Check your email to activate!</Text>
-                </Content>
-            </Container>
-        )
+        return this.props.children;
     }
 };
 
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        display: 'flex',
-        backgroundColor: '#808080'
-    },
-    header: {
-      fontSize: 40,
-      color: '#fff',
-      marginTop: 20,
-      marginBottom: 70
-    }
-});
+export default withNavigation(Activate);

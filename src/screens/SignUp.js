@@ -20,7 +20,8 @@ import {
   Right,
   Text,
   Title,
-	Label
+  Label,
+  Toast
 } from 'native-base';
 
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -31,7 +32,8 @@ export default class SignUp extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: ''
         };
         this.signUp = this.signUp.bind(this);
     }
@@ -47,14 +49,21 @@ export default class SignUp extends React.Component {
     signUp() {
         signUp(this.state.email, this.state.password)
             .then(() => {
-                this.props.navigation.navigate('Activate');
+              Toast.show({
+                text: 'Check your email to activate your account!',
+                 type: "success",
+                 duration: 5000
+            })
             }).catch((error) => {
-				console.warn(error)
-			})
+              Toast.show({
+                  text: 'There was a error creating your account.',
+                   type: "danger",
+                   duration: 5000
+              })
+			  })
     }
 
     render() {
-
         return (
 			<Container style={styles.wrapper}>
 				<Content padder>
