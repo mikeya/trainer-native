@@ -15,9 +15,11 @@ import {
   Input,
   Item,
   Text,
+  Toast
 } from 'native-base';
 
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import Activate from './Activate';
 
 export default class Login extends Component {
     constructor(props){
@@ -40,10 +42,22 @@ export default class Login extends Component {
 	login = async () => {
         try {
             const response = await login(this.state.email, this.state.password);
-            await AsyncStorage.setItem("userToken", response.token);
-            this.props.navigation.navigate('AppStack');
+            if(response.token){
+                await AsyncStorage.setItem("userToken", response.token);
+                this.props.navigation.navigate('AppStack');
+                return;
+            }
+            Toast.show({
+                text: 'There was an error logging into your account.',
+                type: 'danger',
+                duration: 5000
+            })
         } catch(e){
-            console.warn(e);
+            Toast.show({
+                text: 'There was an error logging into your account.',
+                type: 'danger',
+                duration: 5000
+            })
         }
 	};
 
@@ -53,45 +67,46 @@ export default class Login extends Component {
 
 	render() {
 		return (
-            <Container style={styles.wrapper}>
-                <Content padder>
-                    <Text style={styles.loginText}>Log in</Text>
-                    <Form style={styles.inputForm}>
-                        <Text style={styles.formText}> EMAIL ADDRESS </Text>
-                        <Item style={styles.inputField} last>
-                            <Input 
-                                style={styles.formText}
-                                autoCapitalize={'none'}
-                                value={this.state.email}
-                                onChangeText={(email) => this.setState({email})}/>
-                        </Item>
-                        <Text style={styles.formText}> PASSWORD </Text>
-                        <Item last>
-                            <Input
-                                style={styles.formText}
-                                autoCapitalize={'none'}
-                                secureTextEntry={true}
-                                value={this.state.password} 
-                                onChangeText={(password) => this.setState({password})}/>
-                        </Item>
-                    </Form>
-                    <Grid>
-                        <Row>
-                            <Col>
-                                <Button full light style={styles.loginButton} onPress={this.login}>
-                                    <Text>Submit</Text>
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row margin={10}>
-                            <TouchableHighlight onPress={this.signUp}>
-                                <Text style={styles.noAccountText}>Don't have an account? Click here</Text>
-                            </TouchableHighlight>
-                        </Row>
-                    </Grid>
-                </Content>
-                <Footer />
-            </Container>
+            <Activate>
+                <Container style={styles.wrapper}>
+                    <Content padder>
+                        <Text style={styles.loginText}>Log in</Text>
+                        <Form style={styles.inputForm}>
+                            <Text style={styles.formText}> EMAIL ADDRESS </Text>
+                            <Item style={styles.inputField} last>
+                                <Input 
+                                    style={styles.formText}
+                                    autoCapitalize={'none'}
+                                    value={this.state.email}
+                                    onChangeText={(email) => this.setState({email})}/>
+                            </Item>
+                            <Text style={styles.formText}> PASSWORD </Text>
+                            <Item last>
+                                <Input
+                                    style={styles.formText}
+                                    autoCapitalize={'none'}
+                                    secureTextEntry={true}
+                                    value={this.state.password} 
+                                    onChangeText={(password) => this.setState({password})}/>
+                            </Item>
+                        </Form>
+                        <Grid>
+                            <Row>
+                                <Col>
+                                    <Button full light style={styles.loginButton} onPress={this.login}>
+                                        <Text>Submit</Text>
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row margin={10}>
+                                <TouchableHighlight onPress={this.signUp}>
+                                    <Text style={styles.noAccountText}>Don't have an account? Click here</Text>
+                                </TouchableHighlight>
+                            </Row>
+                        </Grid>
+                    </Content>
+                </Container>
+            </Activate>
 		);
 	}
 };

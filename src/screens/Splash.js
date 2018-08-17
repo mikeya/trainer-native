@@ -8,6 +8,7 @@ import {
 	Button,
 	Text
 } from 'native-base';
+import Activate from './Activate';
 
 export default class Splash extends Component {
     static navigationOptions = {
@@ -16,16 +17,18 @@ export default class Splash extends Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
-            <View style={styles.wrapper}>
-                <Image style={styles.logo} source={require('../img/Trainer.png')}/>
-                <Text style={styles.welcomeText}>Welcome to Trainer!</Text>
-                <Button rounded light style={styles.loginButton} onPress={() => navigate('Login')}>
-                    <Text>Log In</Text>
-                </Button>
-                <Button rounded bordered style={styles.createAccountButton} onPress={() => navigate('SignUp')}>
-                    <Text style={styles.createAccountText}>Create Account</Text>
-                </Button>
-            </View>
+			<Activate>
+				<View style={styles.wrapper}>
+					<Image style={styles.logo} source={require('../img/Trainer.png')}/>
+					<Text style={styles.welcomeText}>Welcome to Trainer!</Text>
+					<Button rounded light style={styles.loginButton} onPress={() => navigate('Login')}>
+						<Text>Log In</Text>
+					</Button>
+					<Button rounded bordered style={styles.createAccountButton} onPress={() => navigate('SignUp')}>
+						<Text style={styles.createAccountText}>Create Account</Text>
+					</Button>
+				</View>
+			</Activate>
 		);
 	}
 }

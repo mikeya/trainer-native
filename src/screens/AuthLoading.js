@@ -5,16 +5,17 @@ import {
     StatusBar,
     StyleSheet,
     View,
+    Linking
 } from 'react-native';
+import { Content, Container, Spinner } from 'native-base';
 
 class AuthLoadingScreen extends React.Component {
     constructor(props) {
         super(props);
-        this._bootstrapAsync();
+        this.boostrap();
     }
 
-    // Fetch the token from storage then navigate to our appropriate place
-    _bootstrapAsync = async () => {
+    boostrap = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
 
         // This will switch to the App screen or Auth screen and this loading
@@ -25,10 +26,11 @@ class AuthLoadingScreen extends React.Component {
     // Render any loading content that you like here
     render() {
         return (
-            <View>
-                <ActivityIndicator />
-                <StatusBar barStyle="default" />
-            </View>
+        <Container>
+            <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
+                <Spinner color='black'/>
+            </Content>
+        </Container>
         );
     }
 }
