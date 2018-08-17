@@ -40,10 +40,22 @@ export default class Login extends Component {
 	login = async () => {
         try {
             const response = await login(this.state.email, this.state.password);
-            await AsyncStorage.setItem("userToken", response.token);
-            this.props.navigation.navigate('AppStack');
+            if(response.token){
+                await AsyncStorage.setItem('userToken', response.token);
+                this.props.navigation.navigate('AppStack');
+                return;
+            }
+            Toast.show({
+                text: 'There was an error logging into your account.',
+                type: 'danger',
+                duration: 5000
+            })
         } catch(e){
-            console.warn(e);
+            Toast.show({
+                text: 'There was an error logging into your account.',
+                type: 'danger',
+                duration: 5000
+            })
         }
 	};
 
