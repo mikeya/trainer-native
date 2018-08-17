@@ -1,3 +1,5 @@
+import Base64 from 'base-64';
+
 export const signUp = (email, password) => {
     return fetch('https://www.surewhynotokay.com/sign-up', {
         method: 'POST',
@@ -19,14 +21,10 @@ export const activate = (activationKey) => {
 };
 
 export const login = (email, password) => {
+    console.log(Base64.encode(email + ":" + password))
     return fetch('https://www.surewhynotokay.com/token', {
-        method: 'POST',
-        headers: {'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent( email + ":" + password)))}
+        headers: {'Authorization': 'Basic ' + Base64.encode(email + ":" + password)}
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
-        localStorage.setItem('token', responseJson.token);
-        return true;
-    });
+    .then((response) => response.json());
 };
 
